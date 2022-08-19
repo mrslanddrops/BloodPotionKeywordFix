@@ -1,0 +1,9 @@
+{
+  "Nickname": "",
+  "Visibility": "Visible",
+  "OneLineDescription": "Add VendorItemScroll keyword for scrolls where it missing",
+  "LongDescription": "Check all scrool keywords and add VendorItemScroll keyword if it missing for correct detection of the item category",
+  "PreferredAutoVersioning": "Default",
+  "RequiredMods": [],
+  "TargetedReleases": []
+}
