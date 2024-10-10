@@ -2,6 +2,7 @@ using Mutagen.Bethesda;
 using Mutagen.Bethesda.Synthesis;
 using Mutagen.Bethesda.Skyrim;
 using Mutagen.Bethesda.Plugins;
+using Mutagen.Bethesda.Assets;
 using Mutagen.Bethesda.SkyrimInterfaceAssetType;
 
 namespace BloodPotionKeywordFix
