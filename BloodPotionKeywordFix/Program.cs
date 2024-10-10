@@ -18,8 +18,8 @@ return await SynthesisPipeline.Instance
 public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
 {
 var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItemPotion [KYWD:0008CDEC]
-int patchedCount = 0;
 }
+int patchedCount = 0;
   
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
             {
