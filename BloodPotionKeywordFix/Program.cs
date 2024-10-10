@@ -8,9 +8,8 @@ using Mutagen.Bethesda.Plugins;
 
 using Noggog;
 
-using SynPotionWeight.Types;
+namespace BloodPotionKeywordFix
 
-namespace SynPotionWeight
 {
     public class Program
     {
