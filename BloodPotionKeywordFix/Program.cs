@@ -18,14 +18,14 @@ return await SynthesisPipeline.Instance
 public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
 {
 var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItemPotion [KYWD:0008CDEC]
-var ConsumeSound = FormKey.Factory("106614:Skyrim.esm");
+var BloodPotion = FormKey.Factory("018EF4:Dawnguard.esm");  // DLC1BloodPotionEffect "Blood Ingestion" [MGEF:02018EF4]
 int patchedCount = 0;
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
  {
-                bool useConsumeSound = !potionGetter.ConsumeSound.IsNull || potionGetter.ConsumeSound.FormKey == ConsumeSound;
+                bool isBloodPotion = potionGetter.MagicEffect.FormKey == FormKey.Null || !potionGetter.MagicEffect.IsNull;
                 bool isNeedToFixMissingKeyword = potionGetter.Keywords == null || potionGetter.Keywords.Count == 0 || !potionGetter.Keywords.Contains(vendorItemPotionFormKey);
 
-                if (!useConsumeSound && !isNeedToFixMissingKeyword) continue;
+                if (!isBloodPotion & !isNeedToFixMissingKeyword) continue;
 
                 patchedCount++;
 
