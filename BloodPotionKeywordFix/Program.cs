@@ -15,7 +15,7 @@ return await SynthesisPipeline.Instance
 .Run(args);
 }
 
-public static void RunPatch(Inamed, IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
+public static void RunPatch(Inamed nameGetter, IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
 {
 var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItemPotion [KYWD:0008CDEC]
    var bloodPotion = ("Blood");
@@ -24,7 +24,7 @@ int patchedCount = 0;
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Name().Ingestible().WinningOverrides())
             {
                if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
-               if (potionGetter.Name.Contains(bloodPotion)) continue;
+               if (nameGetter.Name.Contains(bloodPotion)) continue;
 
                 patchedNpcCount++;
               
