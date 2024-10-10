@@ -5,27 +5,27 @@ using Mutagen.Bethesda.Plugins;
 
 namespace BloodPotionKeywordFix
 {
-    public class Program
+   public class Program
     {
         public static async Task<int> Main(string[] args)
         {
             return await SynthesisPipeline.Instance
-                .AddPatch<ISkyrimModGetter>(RunPatch)
-                .SetTypicalOpen(GameRelease.SkyrimSE, "BloodKeyword.esp")
+                .AddPatch<ISkyrimMod, ISkyrimModGetter>(RunPatch)
+                .SetTypicalOpen(GameRelease.SkyrimSE, "BloodPotionKeywordFix.esp")
                 .Run(args);
         }
 
-       public static void RunPatch(IPatcherState<ISkyrimModGetter> state)
+        public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
             var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Dawnguard.esm");// VendorItemPotion [KYWD:0008CDEC]
             int patchedCount = 0;
-            foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
+            foreach (var potionGetter in state.LoadOrder.PriorityOrder.Scroll().WinningOverrides())
             {
                 if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
 
                 patchedCount++;
 
-                var potionToPatch = state.PatchMod.Ingestible.GetOrAddAsOverride(potionGetter);
+                var potionToPatch = state.PatchMod.Scroll.GetOrAddAsOverride(potionGetter);
                 if (potionToPatch.Keywords == null) potionToPatch.Keywords = new Noggog.ExtendedList<IFormLinkGetter<IKeywordGetter>>();
 
                 potionToPatch.Keywords.Add(vendorItemPotionFormKey);
