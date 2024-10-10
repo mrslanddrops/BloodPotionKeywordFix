@@ -25,7 +25,7 @@ namespace BloodPotionKeywordFix
         {
             state.LoadOrder.PriorityOrder.OnlyEnabled().Ingestible().WinningOverrides().ForEach(alch =>
             {
-                if (alch.HasKeyword(Skyrim.Keyword.VendorItemPotion) || alch.HasKeyword(Skyrim.Keyword.VendorItemPoison))
+                if (alch.HasKeyword(Keyword.VendorItemPotion) || alch.HasKeyword(Keyword.VendorItemPoison))
                 {
                     Console.WriteLine($"Patching {alch.Name}");
                     var nalch = state.PatchMod.Ingestibles.GetOrAddAsOverride(alch);
