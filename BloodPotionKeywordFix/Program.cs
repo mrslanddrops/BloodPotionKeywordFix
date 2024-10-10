@@ -23,7 +23,7 @@ int patchedCount = 0;
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
  {
                 bool useConsumeSound = !potionGetter.ConsumeSound.IsNull || potionGetter.ConsumeSound.FormKey == ConsumeSound;
-                bool isNeedToFixMissingKeyword = potionGetter.Keywords == null || potionGetter.Keywords.Count == 0 || !potionGetter.Keywords.Contains(vendorItemKeyFormKey);
+                bool isNeedToFixMissingKeyword = potionGetter.Keywords == null || potionGetter.Keywords.Count == 0 || !potionGetter.Keywords.Contains(vendorItemPotionFormKey);
 
                 if (!useConsumeSound && !isNeedToFixMissingKeyword) continue;
 
@@ -35,7 +35,7 @@ int patchedCount = 0;
                 {
                     if (keyToPatch.Keywords == null) keyToPatch.Keywords = new Noggog.ExtendedList<IFormLinkGetter<IKeywordGetter>>();
 
-                    keyToPatch.Keywords.Add(vendorItemKeyFormKey);
+                    keyToPatch.Keywords.Add(vendorItemPotionFormKey);
                 }
             }
 
