@@ -29,7 +29,7 @@ int patchedCount = 0;
 
                 patchedCount++;
 
-                var potionToPatch = state.PatchMod.Potions.GetOrAddAsOverride(potionGetter);
+                var potionToPatch = state.PatchMod.Ingestibles.GetOrAddAsOverride(potionGetter);
 
                 if (isNeedToFixMissingKeyword)
                 {
