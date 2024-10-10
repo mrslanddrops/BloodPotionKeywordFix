@@ -15,7 +15,7 @@ return await SynthesisPipeline.Instance
 .Run(args);
 }
 
-public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
+public static void RunPatch(Inamed, IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
 {
 var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItemPotion [KYWD:0008CDEC]
    var bloodPotion = ("Blood");
