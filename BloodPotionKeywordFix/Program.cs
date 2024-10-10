@@ -19,7 +19,7 @@ namespace BloodPotionKeywordFix
         {
             var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Dawnguard.esm");// VendorItemPotion [KYWD:0008CDEC]
             int patchedCount = 0;
-            foreach (var scroolGetter in state.LoadOrder.PriorityOrder.Potion().WinningOverrides())
+            foreach (var potionGetter in state.LoadOrder.PriorityOrder.Potion().WinningOverrides())
             {
                 if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
 
