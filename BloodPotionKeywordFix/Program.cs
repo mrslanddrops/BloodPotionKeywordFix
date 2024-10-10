@@ -18,20 +18,8 @@ return await SynthesisPipeline.Instance
 public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
 {
 var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItemPotion [KYWD:0008CDEC]
-var BloodPotion = FormKey.Factory("018EF4:Dawnguard.esm");  // DLC1BloodPotionEffect "Blood Ingestion" [MGEF:02018EF4]
 int patchedCount = 0;
-
-
-                var potionToPatch = state.PatchMod.Ingestibles.GetOrAddAsOverride(potionGetter);
-
-                if (isNeedToFixMissingKeyword)
-                {
-                    if (potionToPatch.Keywords == null) potionToPatch.Keywords = new Noggog.ExtendedList<IFormLinkGetter<IKeywordGetter>>();
-
-                    potionToPatch.Keywords.Add(vendorItemPotionFormKey);
-                }
-            }
-
+  
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
             {
                 // skip invalid
