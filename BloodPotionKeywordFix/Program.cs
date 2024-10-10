@@ -9,7 +9,7 @@ public class Program
 {
 public static async Task<int> Main(string[] args);
    public partial interface IItemGetter : ISkyrimMajorRecordGetter
-   }
+   {}
 {
 return await SynthesisPipeline.Instance
 .AddPatch<ISkyrimMod, ISkyrimModGetter>(RunPatch)
