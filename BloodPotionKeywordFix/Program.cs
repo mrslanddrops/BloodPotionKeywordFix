@@ -18,14 +18,13 @@ return await SynthesisPipeline.Instance
 public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
 {
 var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItemPotion [KYWD:0008CDEC]
+   var bloodPotionFormKey = FormKey.Factory("018EF4:Dawnguard.esm");
 int patchedCount = 0;
   
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
             {
-                // skip invalid
-                if (!(IsValidPotion(potionGetter, state))) continue;
-
                if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
+               if (potionGetter.EditorID != null && potionGetter.EditorID(bloodPotionFormKey)) continue;
 
                 patchedNpcCount++;
               
@@ -37,8 +36,5 @@ int patchedCount = 0;
 
             Console.WriteLine($"Fixed {patchedCount} records");
         }
-                    
-        private static bool IsValidPotion(IPatcherState<ISkyrimMod, ISkyrimModGetter> state);
-          var bloodPotionFormKey = FormKey.Factory("018EF4:Dawnguard.esm");
-     if (potionGetter.EditorID != null && potionGetter.EditorID(bloodPotionFormKey)) return false;
-              return true;
+      }
+}
