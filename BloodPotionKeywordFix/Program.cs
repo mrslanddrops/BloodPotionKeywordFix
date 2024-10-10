@@ -8,7 +8,8 @@ namespace BloodPotionKeywordFix
 public class Program
 {
 public static async Task<int> Main(string[] args);
-   {  public partial interface IItemGetter : ISkyrimMajorRecordGetter
+   {  
+      public partial interface IItemGetter : ISkyrimMajorRecordGetter
    {}
 {
 return await SynthesisPipeline.Instance
