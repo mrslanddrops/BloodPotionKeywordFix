@@ -29,13 +29,13 @@ int patchedCount = 0;
 
                 patchedCount++;
 
-                var keyToPatch = state.PatchMod.Keys.GetOrAddAsOverride(keyGetter);
+                var potionToPatch = state.PatchMod.Potions.GetOrAddAsOverride(potionGetter);
 
                 if (isNeedToFixMissingKeyword)
                 {
-                    if (keyToPatch.Keywords == null) keyToPatch.Keywords = new Noggog.ExtendedList<IFormLinkGetter<IKeywordGetter>>();
+                    if (potionToPatch.Keywords == null) potionToPatch.Keywords = new Noggog.ExtendedList<IFormLinkGetter<IKeywordGetter>>();
 
-                    keyToPatch.Keywords.Add(vendorItemPotionFormKey);
+                    potionToPatch.Keywords.Add(vendorItemPotionFormKey);
                 }
             }
 
