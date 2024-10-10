@@ -39,7 +39,7 @@ int patchedCount = 0;
         }
                     
              static readonly FormKey bloodPotionFormKey = FormKey.Factory("018EF4:Dawnguard.esm");
-        private static bool IsValidPotion(IPotionGetter potionGetter, IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
+        private static bool IsValidPotion(potionGetter, IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
             if (npcGetter.EditorID != null && npcGetter.EditorID(bloodPotionFormKey)) return false;
               return true;
