@@ -18,19 +18,26 @@ return await SynthesisPipeline.Instance
 public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
 {
 var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItemPotion [KYWD:0008CDEC]
+var ConsumeSound = FormKey.Factory("106614:Skyrim.esm");
 int patchedCount = 0;
-            foreach (var potionGetter in state.LoadOrder.PriorityOrder.OnlyEnabled().Ingestible().WinningOverrides())
-{
-if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
-if (potionGetter.Name != null && potionGetter.Name.Contains(Blood)) continue;
+            foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
+ {
+                bool useConsumeSound = !potionGetter.ConsumeSound.IsNull || potionGetter.ConsumeSound.FormKey == ConsumeSound;
+                bool isNeedToFixMissingKeyword = potionGetter.Keywords == null || potionGetter.Keywords.Count == 0 || !potionGetter.Keywords.Contains(vendorItemKeyFormKey);
 
-patchedCount++;
+                if (!useConsumeSound && !isNeedToFixMissingKeyword) continue;
 
-var potionToPatch = state.PatchMod.Ingestibles.GetOrAddAsOverride(potionGetter);
-if (potionToPatch.Keywords == null) potionToPatch.Keywords = new Noggog.ExtendedList<IFormLinkGetter<IKeywordGetter>>();
+                patchedCount++;
 
-potionToPatch.Keywords.Add(vendorItemPotionFormKey);
-}
+                var keyToPatch = state.PatchMod.Keys.GetOrAddAsOverride(keyGetter);
+
+                if (isNeedToFixMissingKeyword)
+                {
+                    if (keyToPatch.Keywords == null) keyToPatch.Keywords = new Noggog.ExtendedList<IFormLinkGetter<IKeywordGetter>>();
+
+                    keyToPatch.Keywords.Add(vendorItemKeyFormKey);
+                }
+            }
 
 Console.WriteLine($"Fixed {patchedCount} records");
 }
