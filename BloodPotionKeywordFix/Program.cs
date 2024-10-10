@@ -20,14 +20,7 @@ public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
 var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItemPotion [KYWD:0008CDEC]
 var BloodPotion = FormKey.Factory("018EF4:Dawnguard.esm");  // DLC1BloodPotionEffect "Blood Ingestion" [MGEF:02018EF4]
 int patchedCount = 0;
-            foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
- {
-                bool isBloodPotion = potionGetter.MagicEffect.FormKey == FormKey.Null || !potionGetter.MagicEffect.IsNull;
-                bool isNeedToFixMissingKeyword = potionGetter.Keywords == null || potionGetter.Keywords.Count == 0 || !potionGetter.Keywords.Contains(vendorItemPotionFormKey);
 
-                if (!isBloodPotion & !isNeedToFixMissingKeyword) continue;
-
-                patchedCount++;
 
                 var potionToPatch = state.PatchMod.Ingestibles.GetOrAddAsOverride(potionGetter);
 
@@ -39,7 +32,29 @@ int patchedCount = 0;
                 }
             }
 
-Console.WriteLine($"Fixed {patchedCount} records");
-}
+            foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
+            {
+                // skip invalid
+                if (!(IsValidPotion(potionTypeGetter, state)) continue;
+
+               if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
+
+                patchedNpcCount++;
+              
+                var potionToPatch = state.PatchMod.Ingestibless.GetOrAddAsOverride(potionGetter);
+                if (potionToPatch.Keywords == null) potionToPatch.Keywords = new Noggog.ExtendedList<IFormLinkGetter<IKeywordGetter>>();
+
+                potionToPatch.Keywords.Add(vendorItemPotionFormKey);
+            }
+
+            Console.WriteLine($"Fixed {patchedCount} records");
+        }
+                    
+             static readonly FormKey bloodPotionFormKey = FormKey.Factory("018EF4:Dawnguard.esm");
+        private static bool IsValidPotion(IPotionTypeGetter potionTypeGetter, IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
+        {
+            if (npcGetter.EditorID != null && npcGetter.EditorID(bloodPotionFormKey)) return false;
+              return true;
+        }
 }
 }
