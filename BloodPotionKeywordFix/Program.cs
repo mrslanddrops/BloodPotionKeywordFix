@@ -15,7 +15,6 @@ return await SynthesisPipeline.Instance
 .Run(args);
 }
 
-      {  
       public partial interface IItemGetter : ISkyrimMajorRecordGetter
    {}
 
