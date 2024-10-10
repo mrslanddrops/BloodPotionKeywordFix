@@ -1,11 +1,18 @@
+using System;
+using System.Threading.Tasks;
+
 using Mutagen.Bethesda;
+using Mutagen.Bethesda.FormKeys.SkyrimSE;
 using Mutagen.Bethesda.Synthesis;
 using Mutagen.Bethesda.Skyrim;
-using Mutagen.Bethesda.Plugins;
 
-namespace BloodPotionKeywordFix
+using Noggog;
+
+using SynPotionWeight.Types;
+
+namespace SynPotionWeight
 {
-   public class Program
+    public class Program
     {
         public static async Task<int> Main(string[] args)
         {
@@ -17,21 +24,15 @@ namespace BloodPotionKeywordFix
 
         public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
-            var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Dawnguard.esm");// VendorItemPotion [KYWD:0008CDEC]
-            int patchedCount = 0;
-            foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
+            state.LoadOrder.PriorityOrder.OnlyEnabled().Ingestible().WinningOverrides().ForEach(alch =>
             {
-                if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
-
-                patchedCount++;
-
-                var potionToPatch = state.PatchMod.Ingestible.GetOrAddAsOverride(potionGetter);
-                if (potionToPatch.Keywords == null) potionToPatch.Keywords = new Noggog.ExtendedList<IFormLinkGetter<IKeywordGetter>>();
-
-                potionToPatch.Keywords.Add(vendorItemPotionFormKey);
-            }
-
-            Console.WriteLine($"Fixed {patchedCount} records");
+                if (alch.HasKeyword(Skyrim.Keyword.VendorItemPotion) || alch.HasKeyword(Skyrim.Keyword.VendorItemPoison))
+                {
+                    Console.WriteLine($"Patching {alch.Name}");
+                    var nalch = state.PatchMod.Ingestibles.GetOrAddAsOverride(alch);
+                    nalch = FormKey.Factory("08CDEC:Dawnguard.esm");// VendorItemPotion [KYWD:0008CDEC]
+                }
+            });
         }
     }
 }
