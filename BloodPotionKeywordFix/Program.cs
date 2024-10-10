@@ -25,7 +25,7 @@ if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPo
 
 patchedCount++;
 
-var potionToPatch = state.PatchMod.Ingestible.GetOrAddAsOverride(potionGetter);
+var potionToPatch = state.PatchMod.Ingestibles.GetOrAddAsOverride(potionGetter);
 if (potionToPatch.Keywords == null) potionToPatch.Keywords = new Noggog.ExtendedList<IFormLinkGetter<IKeywordGetter>>();
 
 potionToPatch.Keywords.Add(vendorItemPotionFormKey);
