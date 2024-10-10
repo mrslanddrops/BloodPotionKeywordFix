@@ -23,7 +23,7 @@ int patchedCount = 0;
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
             {
                 // skip invalid
-                if (!(IsValidPotion(potionGetter, state)) continue;
+                if (!(IsValidPotion(potionGetter, state))) continue;
 
                if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
 
