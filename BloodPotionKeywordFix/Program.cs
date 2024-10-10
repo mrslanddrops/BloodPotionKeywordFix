@@ -21,7 +21,7 @@ var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItem
    var bloodPotion = ("Blood");
 int patchedCount = 0;
   
-            foreach (var potionGetter in state.LoadOrder.PriorityOrder.Named().Ingestible().WinningOverrides())
+            foreach (var potionGetter in state.LoadOrder.PriorityOrder.Name().Ingestible().WinningOverrides())
             {
                if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
                if (potionGetter.Name.Contains(bloodPotion)) continue;
