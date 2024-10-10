@@ -23,7 +23,7 @@ int patchedCount = 0;
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
             {
                 // skip invalid
-                if (!(IsValidPotion(potionTypeGetter, state)) continue;
+                if (!(IsValidPotion(potionGetter, state)) continue;
 
                if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
 
@@ -39,7 +39,7 @@ int patchedCount = 0;
         }
                     
              static readonly FormKey bloodPotionFormKey = FormKey.Factory("018EF4:Dawnguard.esm");
-        private static bool IsValidPotion(IPotionTypeGetter potionTypeGetter, IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
+        private static bool IsValidPotion(IPotionGetter potionGetter, IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
             if (npcGetter.EditorID != null && npcGetter.EditorID(bloodPotionFormKey)) return false;
               return true;
