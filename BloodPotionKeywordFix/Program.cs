@@ -10,12 +10,12 @@ namespace BloodPotionKeywordFix
         public static async Task<int> Main(string[] args)
         {
             return await SynthesisPipeline.Instance
-                .AddPatch<IItem>(RunPatch)
-                .SetTypicalOpen(GameRelease.SkyrimSE, "BloodPotionKeywordFix.esp")
+                .AddPatch<ISkyrimMod, ISkyrimModGetter>(RunPatch)
+                .SetTypicalOpen(GameRelease.SkyrimSE, "BloodKeyword.esp")
                 .Run(args);
         }
 
-        public static void RunPatch(<IItem> state)
+        public static IKeywordGetter? LoadKeyword(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
             var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Dawnguard.esm");// VendorItemPotion [KYWD:0008CDEC]
             int patchedCount = 0;
