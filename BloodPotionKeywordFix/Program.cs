@@ -15,7 +15,7 @@ namespace BloodPotionKeywordFix
                 .Run(args);
         }
 
-        public static IKeywordGetter? LoadKeyword(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
+       public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
         {
             var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Dawnguard.esm");// VendorItemPotion [KYWD:0008CDEC]
             int patchedCount = 0;
