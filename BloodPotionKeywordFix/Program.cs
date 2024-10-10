@@ -19,6 +19,7 @@ public static void RunPatch(IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
 {
 var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItemPotion [KYWD:0008CDEC]
 int patchedCount = 0;
+}
   
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
             {
@@ -40,7 +41,6 @@ int patchedCount = 0;
                     
              static readonly FormKey bloodPotionFormKey = FormKey.Factory("018EF4:Dawnguard.esm");
         private static bool IsValidPotion(IPatcherState<ISkyrimMod, ISkyrimModGetter> state);
-}
         {
             if (potionGetter.EditorID != null && potionGetter.EditorID(bloodPotionFormKey)) return false;
               return true;
