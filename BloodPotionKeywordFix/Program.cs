@@ -24,7 +24,7 @@ int patchedCount = 0;
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Ingestible().WinningOverrides())
             {
                if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
-               if (potionGetter.FormType(17)) continue;
+               if (potionGetter.Name("Potion of Blood")) continue;
 
                 patchedNpcCount++;
               
