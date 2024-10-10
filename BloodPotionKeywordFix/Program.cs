@@ -15,7 +15,7 @@ namespace BloodPotionKeywordFix
                 .Run(args);
         }
 
-        public static void RunPatch(IItem> state)
+        public static void RunPatch(<IItem> state)
         {
             var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Dawnguard.esm");// VendorItemPotion [KYWD:0008CDEC]
             int patchedCount = 0;
