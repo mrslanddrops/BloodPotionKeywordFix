@@ -1,8 +1,8 @@
 {
   "Nickname": "",
   "Visibility": "Visible",
-  "OneLineDescription": "Add VendorItemScroll keyword for scrolls where it missing",
-  "LongDescription": "Check all scrool keywords and add VendorItemScroll keyword if it missing for correct detection of the item category",
+  "OneLineDescription": "Adds proper keyword to Blood Potions",
+  "LongDescription": "Adds proper keyword to Blood Potions so that mods like Wheeler, etc will work with them",
   "PreferredAutoVersioning": "Default",
   "RequiredMods": [],
   "TargetedReleases": []
