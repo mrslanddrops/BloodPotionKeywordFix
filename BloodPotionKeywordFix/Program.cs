@@ -22,7 +22,7 @@ public static void RunPatch(Inamed nameGetter, IPatcherState<ISkyrimMod, ISkyrim
 var vendorItemPotionFormKey = FormKey.Factory("08CDEC:Skyrim.esm");// VendorItemPotion [KYWD:0008CDEC]
    var bloodPotion = ("Blood");
 int patchedCount = 0;
-  
+   
             foreach (var potionGetter in state.LoadOrder.PriorityOrder.Name().Ingestible().WinningOverrides())
             {
                if (potionGetter.Keywords != null && potionGetter.Keywords.Contains(vendorItemPotionFormKey)) continue;
