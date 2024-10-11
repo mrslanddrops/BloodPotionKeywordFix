@@ -7,6 +7,8 @@ namespace BloodPotionKeywordFix
 {
 public class Program
 {
+            public partial interface IItemGetter : ISkyrimMajorRecordGetter
+   {}
 public static async Task<int> Main(string[] args)
 {
 return await SynthesisPipeline.Instance
@@ -14,9 +16,6 @@ return await SynthesisPipeline.Instance
 .SetTypicalOpen(GameRelease.SkyrimSE, "BloodPotionKeywordFix.esp")
 .Run(args);
 }
-
-      public partial interface IItemGetter : ISkyrimMajorRecordGetter
-   {}
 
 public static void RunPatch(IItemGetter itemGetter, IPatcherState<ISkyrimMod, ISkyrimModGetter> state)
 {
