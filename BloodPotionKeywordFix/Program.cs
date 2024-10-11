@@ -6,8 +6,7 @@ using Mutagen.Bethesda.Plugins;
 namespace BloodPotionKeywordFix
 {
 public class Program
-{
-            public partial interface IItemGetter : ISkyrimMajorRecordGetter
+ public partial interface IItemGetter : ISkyrimMajorRecordGetter
 {
 return await SynthesisPipeline.Instance
 .AddPatch<ISkyrimMod, ISkyrimModGetter>(RunPatch)
