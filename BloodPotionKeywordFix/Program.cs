@@ -39,4 +39,3 @@ int patchedCount = 0;
             Console.WriteLine($"Fixed {patchedCount} records");
         }
       }
-}
