@@ -40,3 +40,4 @@ int patchedCount = 0;
         }
     }
   }
+}
