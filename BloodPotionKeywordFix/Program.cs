@@ -12,7 +12,7 @@ namespace BloodPotionKeywordFix
         public static async Task<int> Main(string[] args)
         {
             return await SynthesisPipeline.Instance
-.AddPatch <IItemGetter>, <ISkyrimMod, ISkyrimModGetter>(RunPatch)
+.AddPatch <IItemGetter, ISkyrimMod, ISkyrimModGetter>(RunPatch)
 .SetTypicalOpen(GameRelease.SkyrimSE, "BloodPotionKeywordFix.esp")
 .Run(args);
 }
