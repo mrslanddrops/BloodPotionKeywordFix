@@ -9,7 +9,6 @@ namespace BloodPotionKeywordFix
   { 
 public partial interface IItemGetter : ISkyrimMajorRecordGetter
 {
-{
 return await SynthesisPipeline.Instance
 .AddPatch<ISkyrimMod, ISkyrimModGetter>(RunPatch)
 .SetTypicalOpen(GameRelease.SkyrimSE, "BloodPotionKeywordFix.esp")
